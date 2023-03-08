@@ -1,6 +1,4 @@
 import './ItemListContainer.css'
-import { Button } from 'react-bootstrap'
-
 
 const ItemListContainer = ( {greeting} ) => {
 
@@ -10,11 +8,6 @@ const ItemListContainer = ( {greeting} ) => {
             <hr/>
 
             <p>{greeting}</p>
-
-          {/* <button className='btn btn-danger'>Click me</button> */}
-
-          <Button variant='dark'>Click me</Button>
-          <Button variant='light' size='sm'>Click me</Button>
         </div>
     )
 }
