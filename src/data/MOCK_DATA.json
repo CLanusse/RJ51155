@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Producto 1",
+        "description": "Lorem ipsum...",
+        "price": 1500,
+        "img": "http://dummyimage.com/200x200.png/5fa2dd/ffffff"
+    },
+    {
+        "id": 2,
+        "name": "Producto 2",
+        "description": "Lorem ipsum...",
+        "price": 2500,
+        "img": "http://dummyimage.com/200x200.png/5fa2dd/ffffff"
+    },
+    {
+        "id": 3,
+        "name": "Producto 3",
+        "description": "Lorem ipsum...",
+        "price": 3500,
+        "img": "http://dummyimage.com/200x200.png/5fa2dd/ffffff"
+    },
+    {
+        "id": 4,
+        "name": "Producto 4",
+        "description": "Lorem ipsum...",
+        "price": 4500,
+        "img": "http://dummyimage.com/200x200.png/5fa2dd/ffffff"
+    },
+    {
+        "id": 5,
+        "name": "Producto 5",
+        "description": "Lorem ipsum...",
+        "price": 5500,
+        "img": "http://dummyimage.com/200x200.png/5fa2dd/ffffff"
+    },
+    {
+        "id": 6,
+        "name": "Producto 6",
+        "description": "Lorem ipsum...",
+        "price": 6500,
+        "img": "http://dummyimage.com/200x200.png/5fa2dd/ffffff"
+    }
+]
