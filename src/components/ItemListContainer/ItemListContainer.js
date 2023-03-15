@@ -3,6 +3,23 @@ import { pedirDatos } from '../../helpers/pedirDatos'
 import ItemList from '../ItemList/ItemList'
 import './ItemListContainer.css'
 
+//   protocolo |    dominio     | endpoints | ?parámetros
+// URL: https://www.coderhouse.com/tutores
+
+// GET: https://www.coderhouse.com/notas 
+// id: number (required) número de comisión
+// limit: number (optional)
+
+// query params
+//  https://www.coderhouse.com/notas?limit=20&id=42166
+
+// URL PARAMS
+// GET: https://www.coderhouse.com/alumnos/{id}/{curso}
+// GET: https://www.coderhouse.com/alumnos/123456/javascript
+// GET: https://www.coderhouse.com/alumnos/66554/reactjs
+
+// fetch(url)
+
 
 const ItemListContainer = () => {
 
