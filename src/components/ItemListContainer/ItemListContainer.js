@@ -2,23 +2,7 @@ import { useEffect, useState } from 'react'
 import { pedirDatos } from '../../helpers/pedirDatos'
 import ItemList from '../ItemList/ItemList'
 import './ItemListContainer.css'
-
-//   protocolo |    dominio     | endpoints | ?parámetros
-// URL: https://www.coderhouse.com/tutores
-
-// GET: https://www.coderhouse.com/notas 
-// id: number (required) número de comisión
-// limit: number (optional)
-
-// query params
-//  https://www.coderhouse.com/notas?limit=20&id=42166
-
-// URL PARAMS
-// GET: https://www.coderhouse.com/alumnos/{id}/{curso}
-// GET: https://www.coderhouse.com/alumnos/123456/javascript
-// GET: https://www.coderhouse.com/alumnos/66554/reactjs
-
-// fetch(url)
+import { useParams } from 'react-router-dom'
 
 
 const ItemListContainer = () => {
@@ -26,12 +10,19 @@ const ItemListContainer = () => {
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const { categoryId } = useParams()
+    console.log(categoryId)
+
     useEffect(() => {
         setLoading(true)
 
         pedirDatos()
             .then((res) => {
-                setProductos(res)
+                if (categoryId) {
+                    setProductos( res.filter((prod) => prod.category === categoryId) )
+                } else {
+                    setProductos(res)
+                }
             })
             .catch((error) => {
                 console.log(error)
@@ -39,7 +30,7 @@ const ItemListContainer = () => {
             .finally(() => {
                 setLoading(false)
             })
-    }, [])
+    }, [categoryId])
 
     return (
         <div className="container my-5">
