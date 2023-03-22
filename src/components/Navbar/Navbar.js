@@ -17,7 +17,7 @@ export const Navbar = ({red}) => {
                     <Link to='/productos/panaderia' className="navbar__link">Pan</Link>
                     <Link to='/productos/perfumeria' className="navbar__link">Perfu</Link>
                     <Link to='/productos/verduleria' className="navbar__link">Verdu</Link>
-                    {/* <Link to='/nosotros' className="navbar__link">Nosotros</Link> */}
+                    <Link to='/nosotros' className="navbar__link">Nosotros</Link>
                     {/* <Link to='/pokeapi' className="navbar__link">Pokeapi</Link> */}
                 </nav>
 
