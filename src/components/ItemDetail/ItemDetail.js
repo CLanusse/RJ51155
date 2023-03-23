@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { Link } from "react-router-dom"
+import { CartContext } from "../../context/CartContext"
 import ItemCount from "../ItemCount/ItemCount"
 // import Select from "../Select/Select"
-
 
 // const talles = [
 //     {
@@ -25,10 +26,12 @@ import ItemCount from "../ItemCount/ItemCount"
 //         label: 'XL'
 //     },
 // ]
+// const [talle, setTalle] = useState(talles[0].value)
 
 const ItemDetail = ({item}) => {
+    const { agregarAlCarrito, isInCart } = useContext(CartContext)
+
     const [cantidad, setCantidad] = useState(1)
-    // const [talle, setTalle] = useState(talles[0].value)
 
     const handleAgregar = () => {
         const newItem = {
@@ -36,7 +39,7 @@ const ItemDetail = ({item}) => {
             cantidad
         }
 
-        console.log(newItem)
+        agregarAlCarrito(newItem)
     }
 
     return (
@@ -47,17 +50,17 @@ const ItemDetail = ({item}) => {
             <p>{item.description}</p>
             <p>Precio: ${item.price}</p>
 
-            {/* <Select 
-                set={setTalle}
-                options={talles}
-            /> */}
+            {
+                isInCart(item.id)
+                ?   <Link to="/cart" className="btn btn-success">Terminar mi compra</Link>
+                :   <ItemCount 
+                        max={item.stock}
+                        cantidad={cantidad}
+                        setCantidad={setCantidad}
+                        agregar={handleAgregar}
+                    />
+            }
 
-            <ItemCount 
-                max={item.stock}
-                cantidad={cantidad}
-                setCantidad={setCantidad}
-                agregar={handleAgregar}
-            />
 
 
         </div>

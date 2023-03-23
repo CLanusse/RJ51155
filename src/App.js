@@ -5,26 +5,30 @@ import PokeLista from './ejemplos/PokeApi/PokeLista';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Nosotros from './components/Nosotros/Nosotros';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import { CartProvider } from './context/CartContext';
+import Cart from './components/Cart/Cart';
 
 function App() {
 
   return (
-    <BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Navbar />
 
-      <Navbar />
+        <Routes>
+          <Route path='/' element={ <ItemListContainer /> }/>
+          <Route path='/productos/:categoryId' element={ <ItemListContainer /> }/>
+          <Route path='/detail/:itemId' element={ <ItemDetailContainer /> } />
+          <Route path='/cart' element={ <Cart /> } />
+          <Route path='/nosotros' element={ <Nosotros /> }/>
+          <Route path='/pokeapi' element={ <PokeLista /> }/>
+          <Route path='*' element={ <Navigate to={"/"}/> }/>
+        </Routes>
 
-      <Routes>
-        <Route path='/' element={ <ItemListContainer /> }/>
-        <Route path='/productos/:categoryId' element={ <ItemListContainer /> }/>
-        <Route path='/detail/:itemId' element={ <ItemDetailContainer /> } />
-        <Route path='/nosotros' element={ <Nosotros /> }/>
-        <Route path='/pokeapi' element={ <PokeLista /> }/>
-        <Route path='*' element={ <Navigate to={"/"}/> }/>
-      </Routes>
+        {/* <Footer /> */}
 
-      {/* <Footer /> */}
-
-    </BrowserRouter>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

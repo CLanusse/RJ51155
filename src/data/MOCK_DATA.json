@@ -4,7 +4,7 @@
         "name": "Fish - Soup Base, Bouillon",
         "price": 4952.0,
         "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-        "img": "./imgs/logo.png",
+        "img": "http://dummyimage.com/200x200.png/ff4444/ffffff",
         "category": "perfumeria",
         "stock": 1
     },
