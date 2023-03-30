@@ -31,4 +31,14 @@
             }
         }
     }
+
+    .user {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        padding: 20px;
+    }
 }

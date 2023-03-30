@@ -1,9 +1,7 @@
-import { useContext, useMemo, useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { CartContext } from "../../context/CartContext"
 import ItemCount from "../ItemCount/ItemCount"
-import Memo from "./Memo"
-// import Select from "../Select/Select"
 
 // const talles = [
 //     {
@@ -43,9 +41,9 @@ const ItemDetail = ({item}) => {
         agregarAlCarrito(newItem)
     }
 
-    const fechaMontaje = useMemo(() => {
-        return new Date()
-    }, [cantidad])
+    // const fechaMontaje = useMemo(() => {
+    //     return new Date()
+    // }, [cantidad])
 
     return (
         <div>
@@ -56,8 +54,8 @@ const ItemDetail = ({item}) => {
             {item.stock <= 5 && <p><strong>Quedan sólo {item.stock} unidades!</strong></p>}
             <p>Precio: ${item.price}</p>
 
-            <p>Fecha de montaje: {fechaMontaje.toLocaleString()}</p>
-            <Memo />
+            {/* <p>Fecha de montaje: {fechaMontaje.toLocaleString()}</p>
+            <Memo /> */}
 
             {
                 isInCart(item.id)
