@@ -24,10 +24,9 @@ const MOCK_USERS = [
 
 export const LoginProvider = ({children}) => {
     const [user, setUser] = useState({
-        email: null,
-        logged: false
+        email: 'admin@coder.com',
+        logged: true
     })
-    console.log(user)
 
     const login = (values) => {
         const match = MOCK_USERS.find((user) => user.email === values.email && user.password === values.password)
