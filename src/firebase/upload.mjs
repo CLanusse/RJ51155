@@ -1,6 +1,6 @@
+import MOCK_DATA from '../data/MOCK_DATA.json' assert {type: "json"}
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"
-import { getAuth, GoogleAuthProvider } from "firebase/auth"
+import { getFirestore, collection, addDoc } from "firebase/firestore"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,6 +14,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app)
-export const auth = getAuth(app)
-export const provider = new GoogleAuthProvider()
+const db = getFirestore(app)
+const productosRef = collection(db, 'productos')
+
+MOCK_DATA.forEach((item) => {
+    delete item.id
+
+    addDoc(productosRef, item)
+})

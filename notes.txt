@@ -1,0 +1,133 @@
+import MOCK from '../data/MOCK_DATA.json' assert { type: "json" }
+import { db } from './config.js'
+import { collection, addDoc } from 'firebase/firestore'
+
+
+MOCK.forEach(item => delete item.id)
+
+const productosRef = collection(db, 'productos')
+
+MOCK.forEach(item => {
+    addDoc(productosRef, item)
+})
+
+
+/////////////////////
+
+import { createContext, useContext, useEffect, useState } from "react";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from "firebase/auth"
+import { auth, provider } from "../firebase/config"
+
+export const LoginContext = createContext()
+
+export const useLoginContext = () => {
+    return useContext(LoginContext)
+}
+
+export const LoginProvider = ({children}) => {
+    const [loading, setLoading] = useState(false)
+    const [user, setUser] = useState({
+        email: null,
+        logged: false,
+        error: null
+    })
+
+    const googleLogin = () => {
+        signInWithPopup(auth, provider)
+            .catch((error) => {
+                console.log(error)
+                setUser({
+                    email: null,
+                    logged: false,
+                    error: error.message
+                })
+            })  
+    }
+
+    const login = (values) => {
+        setLoading(true)
+
+        signInWithEmailAndPassword(auth, values.email, values.password)
+            .catch((error) => {
+                console.log(error)
+                setUser({
+                    email: null,
+                    logged: false,
+                    error: error.message
+                })
+            })
+            .finally(() => setLoading(false))
+    }
+
+    const logout = () => {
+        signOut(auth)
+            .then(() => {
+                setUser({
+                    email: null,
+                    logged: false,
+                    error: null
+                })
+            })
+        
+    }
+
+    const register = (values) => {
+        setLoading(true)
+
+        createUserWithEmailAndPassword(auth, values.email, values.password)
+            .catch((error) => {
+                console.log(error)
+                setUser({
+                    email: null,
+                    logged: false,
+                    error: error.message
+                })
+            })
+            .finally(() => setLoading(false))
+    }
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser({
+                    email: user.email,
+                    logged: true,
+                    error: null
+                })
+            } else {
+                logout()
+            }
+        })
+    }, []) 
+
+    return (
+        <LoginContext.Provider value={{googleLogin, user, login, logout, loading, register}}>
+            {children}
+        </LoginContext.Provider>
+    )
+}
+
+
+/////////////////////////////////
+
+const batch = writeBatch(db)
+        const ordersRef = collection(db, 'orders')
+        const productosRef = collection(db, 'productos')
+        
+        const outOfStock = []
+        
+        const itemsRef = query( productosRef, where( documentId(), 'in', cart.map(prod => prod.id) ) )
+  
+        const productos = await getDocs(itemsRef)
+        
+        productos.docs.forEach(doc => {
+                const item = cart.find(item => item.id === doc.id)
+
+                if (doc.data().stock >= item.cantidad) {
+                    batch.update(doc.ref, {
+                        stock: doc.data().stock - item.cantidad
+                    })
+                } else {
+                    outOfStock.push(item)
+                }
+        })
