@@ -24,9 +24,6 @@ export const LoginProvider = ({children}) => {
 
     const googleLogin = () => {
         signInWithPopup(auth, provider)
-            .then((user) => {
-                console.log(user)
-            })
     }
 
     const logout = () => {

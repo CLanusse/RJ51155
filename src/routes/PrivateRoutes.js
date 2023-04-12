@@ -5,6 +5,7 @@ import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailCon
 import Cart from '../components/Cart/Cart';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Checkout from '../components/Checkout/Checkout';
+import PokeApi from '../ejemplos/PokeApi/PokeApi';
 
 
 const PrivateRoutes = () => {
@@ -14,6 +15,7 @@ const PrivateRoutes = () => {
             <Navbar />
             <Routes>
                 <Route path='/' element={ <ItemListContainer /> }/>
+                {/* <Route path='/' element={ <PokeApi /> }/> */}
                 <Route path='/productos/:categoryId' element={ <ItemListContainer /> }/>
                 <Route path='/detail/:itemId' element={ <ItemDetailContainer /> } />
                 <Route path='/cart' element={ <Cart /> } />

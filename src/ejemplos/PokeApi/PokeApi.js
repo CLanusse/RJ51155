@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react"
+import useFetch from "../../hooks/useFetch"
 
 
 const PokeApi = () => {
-    const [pokemon, setPokemon] = useState(null)
+    
     const [id, setId] = useState(1)
 
-    useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-            .then((res) => res.json() )
-            .then((data) => {
-                setPokemon(data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-
-    }, [id])
+    const {data: pokemon, loading} = useFetch(`https://pokeapi.co/api/v2/pokemon/${id}`, [id])
 
     const handleSiguiente = () => {
         setId(id + 1)
@@ -31,8 +22,9 @@ const PokeApi = () => {
             <hr/>
 
             {
-                pokemon &&
-                    <div>
+                loading
+                ?   <h4>Cargando..</h4>
+                :   <div>
                         <h4>{pokemon.name}</h4>
                         <img src={pokemon.sprites.front_default}  alt={pokemon.name}/>
                     </div>
